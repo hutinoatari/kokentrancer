@@ -17,7 +17,8 @@ const createWindow = () => {
             contextIsolation: true,
         },
     });
-    //mainWindow.setMenu(null);
+    mainWindow.setMenuBarVisibility(false);
+    mainWindow.setMenu(null);
     mainWindow.loadURL(mainURL);
     mainWindow.on("closed", () => mainWindow = null);
 }
