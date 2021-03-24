@@ -1,5 +1,6 @@
 "use strict";
 const {BrowserWindow, app} = require("electron");
+const path = require("path");
 
 const mainURL = `file://${__dirname}/src/index.html`;
 let mainWindow = null;
@@ -12,8 +13,8 @@ const createWindow = () => {
         minHeight: 240,
         useContentSize: true,
         webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
+            preload: path.join(__dirname, "./preload.js"),
+            contextIsolation: true,
         },
     });
     //mainWindow.setMenu(null);
