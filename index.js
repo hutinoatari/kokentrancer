@@ -16,7 +16,7 @@ const createWindow = () => {
             enableRemoteModule: true,
         },
     });
-    mainWindow.setMenu(null);
+    //mainWindow.setMenu(null);
     mainWindow.loadURL(mainURL);
     mainWindow.on("closed", () => mainWindow = null);
 }

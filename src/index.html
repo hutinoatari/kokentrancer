@@ -11,7 +11,33 @@
     </header>
 
     <main>
-        
+        <form>
+            <div>
+                <label for="nameForm">名前: </label>
+                <input
+                    id="nameForm"
+                    list="nameList"
+                    type="text"
+                    placeholder="工研太郎"
+                >
+                <datalist id="nameList"></datalist>
+            </div>
+            <div>
+                <label for="temperatureForm">体温: </label>
+                <input
+                    id="temperatureForm"
+                    type="number"
+                    min="32.0"
+                    max="42.0"
+                    step="0.1"
+                    placeholder="36.0"
+                >
+            </div>
+            <div>
+                <input type="button" value="リセット">
+                <input type="button" value="決定する">
+            </div>
+        </form>
     </main>
 
     <footer>
