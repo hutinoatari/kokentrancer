@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": ".\\node_modules\\.bin\\electron .",
-    "build(win)": "npx electron-builder --win --x64",
-    "build(unix)": "npx electron-builder --linux --x64"
+    "build-win": "npx electron-builder --win --x64",
+    "build-unix": "npx electron-builder --linux --x64"
   },
   "devDependencies": {
     "electron": "^12.0.1",

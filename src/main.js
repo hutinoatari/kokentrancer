@@ -1,6 +1,8 @@
 const fs = window.requires.fs;
+const path = window.requires.path;
+const __dirname = path.dirname(window.requires.__dirname);
 
-const nameListfile = "./src/data/nameList.txt";
+const nameListFile = path.join(__dirname, "nameList.txt");
 
 const nameForm = document.getElementById("nameForm");
 const temperatureForm = document.getElementById("temperatureForm");
@@ -23,12 +25,15 @@ const sendForms = () => {
         return;
     }
 
-    const csvFile = `./src/data/${dateToYYYYMMDD(new Date())}.csv`;
+    const csvFile = path.join(__dirname, `${dateToYYYYMMDD(new Date())}.csv`);
+    console.log(csvFile);
+    const csvFileExist = fs.existsSync(csvFile);
+    if(!csvFileExist) fs.writeFileSync(csvFile, "", "utf-8");
     let csv = fs.readFileSync(csvFile, "utf-8");
     csv += `${name},${temperature}\n`;
     fs.writeFileSync(csvFile, csv, "utf-8");
 
-    const data = fs.readFileSync(nameListfile, "utf-8");
+    const data = fs.readFileSync(nameListFile, "utf-8");
     let names;
     if(data !== ""){
         names = data.split("\n");
@@ -38,7 +43,9 @@ const sendForms = () => {
     }else{
         names = name;
     }
-    fs.writeFileSync(nameListfile, names, "utf-8");
+    const nameListFileExist = fs.existsSync(nameListFile);
+    if(!nameListFileExist) fs.writeFileSync(nameListFile, "", "utf-8");
+    fs.writeFileSync(nameListFile, names, "utf-8");
 
     alert("記録完了！");
     formInit();
@@ -51,7 +58,9 @@ const formInit = () => {
     temperatureForm.value = "";
 
     nameList.innerHTML = "";
-    const data = fs.readFileSync(nameListfile, "utf-8");
+    const nameListFileExist = fs.existsSync(nameListFile);
+    if(!nameListFileExist) fs.writeFileSync(nameListFile, "", "utf-8");
+    const data = fs.readFileSync(nameListFile, "utf-8");
     if(data !== ""){
         const names = data.split("\n");
         names.forEach((name) => {
